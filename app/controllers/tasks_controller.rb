@@ -1,8 +1,14 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :require_user_logged_in
   
   def index
-    @tasks = Task.all
+    #@tasks = Task.all
+    #ログイン確認後、自分専用のタスクへ移行
+    if logged_in?
+      @task = current_user.tasks.build
+      @tasks = current_user.tasks.order(id: :desc).page(params[:page])
+    end
   end
 
   def show
@@ -14,11 +20,11 @@ class TasksController < ApplicationController
   end
 
   def create
-    @task = Task.new(task_params)
+    @task = current_user.tasks.build(task_params)
     
     if @task.save
-      flash[:success] = "タスク作成完了"
-      redirect_to @task
+      flash[:success] = "タスク作成完了しました。"
+      redirect_to root_url
     else
       flash.now[:danger] = "タスクが作成できませんでした。"
       render :new
@@ -33,7 +39,7 @@ class TasksController < ApplicationController
     set_task
     
     if @task.update(task_params)
-      flash[:success] = "タスクの更新しました。"
+      flash[:success] = "タスクを更新しました。"
       redirect_to @task
     else
       flash.now[:danger] = "タスクは更新できませんでした。"

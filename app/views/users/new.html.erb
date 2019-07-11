@@ -1,0 +1,21 @@
+<h1>ログイン</h1>
+<ul>
+  <%= form_with(model: @user,local: true) do |f| %>
+    
+    <li><%= f.label :name, "名前" %>
+    <%= f.text_field :name %></li>
+    
+    <li><%= f.label :email, "メールアドレス" %>
+    <%= f.text_field :email %></li>
+    
+    <li><%= f.label :password, "パスワード" %>
+    <%= f.text_field :password %></li>
+    
+    <li><%= f.label :password_confirmation, "パスワード再確認" %>
+    <%= f.text_field :password_confirmation %></li>
+    
+    <li><%= f.submit "登録" %></li>
+  <% end %>  
+
+    
+</ul>
