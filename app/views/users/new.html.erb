@@ -1,21 +1,27 @@
-<h1>ログイン</h1>
-<ul>
-  <%= form_with(model: @user,local: true) do |f| %>
-    
-    <li><%= f.label :name, "名前" %>
-    <%= f.text_field :name %></li>
-    
-    <li><%= f.label :email, "メールアドレス" %>
-    <%= f.text_field :email %></li>
-    
-    <li><%= f.label :password, "パスワード" %>
-    <%= f.text_field :password %></li>
-    
-    <li><%= f.label :password_confirmation, "パスワード再確認" %>
-    <%= f.text_field :password_confirmation %></li>
-    
-    <li><%= f.submit "登録" %></li>
-  <% end %>  
+<h1>ユーザー登録</h1>
 
-    
-</ul>
+<%= form_with(model: @user,local: true) do |f| %>
+  
+  <div class="form-group">
+    <%= f.label :name, "名前" %>
+    <%= f.text_field :name %>    
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :email, "メールアドレス" %>
+    <%= f.email_field :email %>    
+  </div>
+  
+  <div class="form-group">
+    <%= f.label :password, "パスワード" %>
+    <%= f.password_field :password %>    
+  </div>
+
+  <div class="form-group">
+    <%= f.label :password_confirmation, "パスワード再確認" %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  
+  <%= f.submit "登録" %>
+<% end %>  
+

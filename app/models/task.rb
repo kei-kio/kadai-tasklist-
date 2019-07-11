@@ -4,5 +4,4 @@ class Task < ApplicationRecord
     
     #　1対多　user << task
     belongs_to :user
-    validates :content, presence: true, length: { maximum: 255 }
 end
