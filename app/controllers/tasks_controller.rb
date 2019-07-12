@@ -14,7 +14,6 @@ class TasksController < ApplicationController
   end
 
   def show
-    set_task
   end
 
   def new
@@ -34,11 +33,9 @@ class TasksController < ApplicationController
   end
 
   def edit
-    set_task
   end
 
   def update
-    set_task
     
     if @task.update(task_params)
       flash[:success] = "タスクを更新しました。"
@@ -50,7 +47,6 @@ class TasksController < ApplicationController
   end
 
   def destroy
-    set_task
     @task.destroy
     
     flash[:success] = "タスクを削除しました。"
@@ -59,9 +55,9 @@ class TasksController < ApplicationController
   
   private
   
-  def set_task
-    @task = Task.find(params[:id])
-  end
+  #def set_task
+    #@task = Task.find(params[:id])
+  #end
   
   def task_params
     params.require(:task).permit(:content, :status)
